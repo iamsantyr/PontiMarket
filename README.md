@@ -34,6 +34,7 @@
 
 App/
 ├── Views/
+
 ├── Services/
 ├── Managers/
 ├── Models/
@@ -54,7 +55,7 @@ App/
 **Santiago Rodríguez**  
 Estudiante de Ingeniería de Sistemas  
 GitHub: [@iamsantyr](https://github.com/iamsantyr)  
-Correo: santiagorodriguez@example.com *(cámbialo si quieres)*
+Correo: iamsantyr@gmail.com
 
 ---
 
