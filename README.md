@@ -16,8 +16,8 @@
 
 ## 📸 Capturas de pantalla
 
-> *(Agrega imágenes cuando tengas interfaz lista)*  
-> Ejemplo: Login, vista de productos, perfil de usuario...
+> 
+> Login, vista de productos, perfil de usuario...
 
 ---
 
