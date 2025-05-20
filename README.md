@@ -33,13 +33,19 @@
 ## 🧠 Estructura del Proyecto
 
 App/
+
 ├── Views/
 
 ├── Services/
+
 ├── Managers/
+
 ├── Models/
+
 ├── Assets.xcassets/
+
 ├── GoogleService-Info.plist
+
 └── AppApp.swift
 
 ---
