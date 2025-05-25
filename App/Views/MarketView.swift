@@ -21,33 +21,44 @@ struct MarketView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                List(products) { product in
-                    VStack(alignment: .leading) {
-                        // Título corregido (era "title", ahora "name")
-                        Text(product.data["name"] as? String ?? "Sin título")
-                            .font(.headline)
+                List {
+                    ForEach(products) { product in
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text(product.data["name"] as? String ?? "Sin título")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundColor(.primary)
 
-                        // Descripción
-                        Text(product.data["description"] as? String ?? "")
-                            .font(.subheadline)
+                            Text(product.data["description"] as? String ?? "")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
 
-                        // Precio formateado
-                        if let price = product.data["price"] as? Double {
-                            Text(String(format: "$%.2f", price))
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        } else if let price = product.data["price"] as? NSNumber {
-                            Text(String(format: "$%.2f", price.doubleValue))
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        } else {
-                            Text("Precio no disponible")
-                                .font(.caption)
-                                .foregroundColor(.red)
+                            if let price = product.data["price"] as? Double {
+                                Text(String(format: "$%.2f", price))
+                                    .font(.headline)
+                                    .foregroundColor(.green)
+                            } else if let price = product.data["price"] as? NSNumber {
+                                Text(String(format: "$%.2f", price.doubleValue))
+                                    .font(.headline)
+                                    .foregroundColor(.green)
+                            } else {
+                                Text("Precio no disponible")
+                                    .font(.caption)
+                                    .foregroundColor(.red)
+                            }
                         }
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .shadow(color: .gray.opacity(0.2), radius: 4, x: 0, y: 2)
+                        .listRowInsets(EdgeInsets())
+                        .padding(.horizontal)
+                        .padding(.bottom, 8)
+                        .listRowSeparator(.hidden) // 👉 Esto elimina la línea gris
                     }
-                    .padding(.vertical, 4)
                 }
+                .listStyle(PlainListStyle())
                 .navigationTitle("Marketplace")
 
                 VStack {
