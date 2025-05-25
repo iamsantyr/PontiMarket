@@ -55,7 +55,7 @@ struct MarketView: View {
                         .listRowInsets(EdgeInsets())
                         .padding(.horizontal)
                         .padding(.bottom, 8)
-                        .listRowSeparator(.hidden) // 👉 Esto elimina la línea gris
+                        .listRowSeparator(.hidden) //  Esto elimina la línea gris
                     }
                 }
                 .listStyle(PlainListStyle())
