@@ -8,9 +8,31 @@ struct AddProductView: View {
     @State private var description = ""
     @State private var price = ""
 
+    @State private var showCamera = false
+    @State private var productImage: UIImage?
+
     var body: some View {
         NavigationView {
             Form {
+                Section(header: Text("Foto del producto")) {
+                    if let image = productImage {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 200)
+                            .cornerRadius(10)
+                    }
+
+                    Button(action: {
+                        showCamera = true
+                    }) {
+                        HStack {
+                            Image(systemName: "camera")
+                            Text("Tomar foto")
+                        }
+                    }
+                }
+
                 Section(header: Text("Información del producto")) {
                     TextField("Nombre", text: $title)
                     TextField("Descripción", text: $description)
@@ -20,7 +42,6 @@ struct AddProductView: View {
                             let filtered = price.filter { "0123456789.".contains($0) }
                             let dotCount = filtered.filter { $0 == "." }.count
 
-                            // Permitir solo un punto decimal
                             if dotCount > 1 {
                                 let firstDotIndex = filtered.firstIndex(of: ".")!
                                 let cleaned = filtered.prefix(upTo: filtered.index(after: firstDotIndex)) +
@@ -41,6 +62,9 @@ struct AddProductView: View {
             .navigationBarItems(trailing: Button("Cancelar") {
                 presentationMode.wrappedValue.dismiss()
             })
+            .sheet(isPresented: $showCamera) {
+                ImagePicker(image: $productImage)
+            }
         }
     }
 
@@ -55,7 +79,8 @@ struct AddProductView: View {
             return
         }
 
-        FirestoreManager.shared.addProduct(name: title, description: description, price: priceDouble, userEmail: userEmail){ success in
+        // Aquí podrías guardar la imagen en Firebase Storage, si lo deseas
+        FirestoreManager.shared.addProduct(name: title, description: description, price: priceDouble, userEmail: userEmail) { success in
             if success {
                 print("Producto guardado correctamente")
                 presentationMode.wrappedValue.dismiss()
@@ -65,7 +90,6 @@ struct AddProductView: View {
         }
     }
 }
-
 
 struct AddProductView_Previews: PreviewProvider {
     static var previews: some View {
