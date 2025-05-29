@@ -55,11 +55,8 @@ struct MarketView: View {
                         .listRowInsets(EdgeInsets())
                         .padding(.horizontal)
                         .padding(.bottom, 8)
-<<<<<<< HEAD
                         .listRowSeparator(.hidden) //  Esto elimina la línea gris
-=======
                         .listRowSeparator(.hidden) // Esto elimina la línea gris
->>>>>>> fde8b8b (The feature has been implemented so that the entrepreneur can upload a photo of the product (The functionality has not yet been tested on a cell phone but it is expected to work).)
                     }
                 }
                 .listStyle(PlainListStyle())
