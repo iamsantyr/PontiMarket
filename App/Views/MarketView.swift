@@ -114,6 +114,3 @@ struct MarketView_Previews: PreviewProvider {
         MarketView()
     }
 }
-
-
-//Prueba
